@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: #3498db;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            max-width: 80%;
+            margin-top: 20px; /* Penyesuaian untuk memberikan ruang di atas kontainer */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            width: 80%; /* Penyesuaian lebar input */
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .emoticon {
+            font-size: 36px;
+            margin: 10px;
+        }
+
+        .link {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+    <title>Gombalan Kode</title>
+</head>
+<body>
+    <div class="container" id="start-container">
+        <h1>Selamat datang di Gombalan Kode!</h1>
+        <label for="nama">Masukkan nama Anda:</label>
+        <br>
+        <input type="text" id="nama" placeholder="Nama Anda" autofocus>
+        <br>
+        <button onclick="mulaiGombalan()">Mulai Gombalan</button>
+    </div>
+
+    <div class="container" id="gombalan-container" style="display:none;">
+        <h1 id="gombalan">Menjadi programmer sepertimu, membuat hidupku semakin 'compiled' dengan kebahagiaan. 😊</h1>
+        <div class="emoticon">💻🚀</div>
+        <button onclick="gantiGombalan()">Ganti Gombalan</button>
+        <p id="akhir">Terima kasih telah menerima gombalanku, <span id="namaAkhir">teman</span>. Semoga bisa membuatmu tersenyum dan bahagia! 😄❤️</p>
+        <div class="link" onclick="salinLink()">Salin Link untuk Teman</div>
+    </div>
+
+    <script>
+        var gombalanIndex = 0;
+        var gombalanList = [
+            "Menjadi programmer sepertimu, membuat hidupku semakin 'compiled' dengan kebahagiaan. 😊",
+            "Apakah kamu suka coding? Kita seperti HTML dan CSS, cocok satu sama lain. 😄",
+            "Jika kamu adalah fungsi, aku pasti akan selalu 'call' kamu setiap saat. 😘"
+            // Tambahkan lebih banyak gombalan sesuai keinginan Anda
+        ];
+
+        function mulaiGombalan() {
+            var nama = document.getElementById('nama').value;
+            document.getElementById('namaAkhir').innerText = nama || 'teman';
+
+            var startContainer = document.getElementById('start-container');
+            var gombalanContainer = document.getElementById('gombalan-container');
+
+            startContainer.style.display = 'none';
+            gombalanContainer.style.display = 'block';
+        }
+
+        function gantiGombalan() {
+            gombalanIndex = (gombalanIndex + 1) % gombalanList.length;
+            document.getElementById('gombalan').innerText = gombalanList[gombalanIndex];
+        }
+
+        function salinLink() {
+            var linkText = document.location.href;
+            var textArea = document.createElement("textarea");
+            textArea.value = linkText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert("Link telah disalin ke papan klip!");
+        }
+    </script>
+</body>
+</html>
